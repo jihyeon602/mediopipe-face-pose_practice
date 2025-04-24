@@ -49,10 +49,12 @@ with mp_pose.Pose(
         results.pose_world_landmarks, mp_pose.POSE_CONNECTIONS)
 
 url = 'rtsp://192.168.50.159/video1' # 카메라 주소
-video_path = 'C:\\Users\\leesc\\Downloads\\사람동작 영상\\비디오\\video_action_6\\data\\delivery_final_3D\\video\\6-1\\6-1_001-C01.mp4'
+video_path = 'C:\\Users\\302-26\\mediapipe-pose-detection\\fallen.mp4'
 image_path = 'C:\\Users\\leesc\\PycharmProjects\\Gesture-control\\a.jpg'
+
+
 # For webcam input:
-cap = cv2.VideoCapture(video_path) # 0 : 내장카메라, url : 카메라 주소
+cap = cv2.VideoCapture(0) # 0 : 내장카메라, url : 카메라 주소
 pTime = 0
 cnt = 0 # 카운트
 
@@ -69,7 +71,7 @@ with mp_pose.Pose(
     # To improve performance, optionally mark the image as not writeable to
     # pass by reference.
     image.flags.writeable = False
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  #opencv: BGR 체계(블루,그린,레드) -> 미디어파이프는 BRG 체계를 사용하기때문에 바꿈
 
     results = pose.process(image)
 
@@ -103,7 +105,7 @@ with mp_pose.Pose(
 
     # Draw the pose annotation on the image.
     image.flags.writeable = True
-    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)  #위에서 만든 미이어파이프 이미지를 화면에 뿌릴 때 다시 바꿈
     mp_drawing.draw_landmarks(
         image,
         results.pose_landmarks,

@@ -3,6 +3,7 @@ import mediapipe as mp
 import time
 import numpy as np
 
+
 mp_drawing = mp.solutions.drawing_utils
 mp_drawing_styles = mp.solutions.drawing_styles
 mp_pose = mp.solutions.pose
@@ -48,8 +49,14 @@ with mp_pose.Pose(
     mp_drawing.plot_landmarks(
         results.pose_world_landmarks, mp_pose.POSE_CONNECTIONS)
 
+url = 'rtsp://192.168.50.159/video1' # 카메라 주소
+video_path = 'C:\\Users\\302-26\\mediapipe-pose-detection\\fallen.mp4'
+image_path = 'C:\\Users\\leesc\\PycharmProjects\\Gesture-control\\a.jpg'
+
 # For webcam input:
 cap = cv2.VideoCapture(0)
+pTime = 0
+cnt = 0
 
 with mp_pose.Pose(
     min_detection_confidence=0.5,
