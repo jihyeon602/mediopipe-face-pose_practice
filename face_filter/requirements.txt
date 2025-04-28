@@ -1,0 +1,3 @@
+puthon =3.11
+mediopip version: 0.10.21
+ml-dtypes== 0.3.1
